@@ -1,0 +1,52 @@
+This is the Change Log for the Fitbit Data Cleaning script
+
+
+packages installed:
+1.)Tidyverse
+2.)janitor
+3.)lubridate
+4.)Skimr 
+
+Changing file names:
+daily_activity <- read.csv("Excel Files/dailyActivity_merged.csv")
+daily_sleep <- read.csv("Excel Files/sleepDay_merged.csv")
+weight_log <- read_csv("Excel Files/weightLogInfo_merged.csv")
+
+daily_activity changes:
+  
+  Data Reformating
+    27.)$ActivityDate was set to CHR changed to date
+  
+  Data Cleaning
+    39.)made a new file called daily_activity_cln
+    40.)Removing rows with calories,and steps set to 0 since it implies data is too incomplete,or tracker not worn
+    41.) Removing rows with 0 steps since it provides nothing but cluter to my analysis
+    42.)Used a pipe (%<%) to get rid of tracker_distance since total_distance makes it redundant
+    44.)Changed "total_distance" to "distance_mi" for better context
+    45.)made a new column called week day for later analysis 
+
+    
+
+daily_sleep changes:
+  
+  Data Reformating
+    28.)$SleepDay was set to CHR changed to date
+    
+  Data Cleaning
+    49.)made a new file called daily_sleep_cln
+    50.)made a new column called sleep_hours
+    51.)made a new column called weekday
+    
+weight_log changes:
+  
+  Data Reformating
+    29.)$Date was set CHR changed to date
+    30.)$IsManualReport was CHR changed to logical
+  
+  Data Cleaning
+    56.)Used a pipe (%<%) we get rid of the column fat because it has too many blanks and provides little context to our analysis since it does not have a reference point of fat
+    
+Exporting to Tableau
+write.csv(daily_activity_cln, file ='Excel File_daily_activity.csv')
+write.csv(daily_sleep_cln, file = 'Excel File_daily_sleep.csv')
+write.csv(weight_log, file = 'Excel File_weight_log.csv')
