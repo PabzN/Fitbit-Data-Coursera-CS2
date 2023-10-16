@@ -46,8 +46,10 @@ daily_activity_cln$week_day <- wday(daily_activity_cln$activity_date, label = T,
 
 
 #cleaning daily_sleep
-daily_sleep$hours_asleep = round((daily_sleep$total_minutes_asleep)/60)
-daily_sleep$week_day <- wday(daily_sleep$sleep_day, label = T, abbr = T)
+daily_sleep_cln <- daily_sleep
+daily_sleep_cln$hours_asleep = round((daily_sleep_cln$total_minutes_asleep)/60)
+daily_sleep_cln$week_day <- wday(daily_sleep_cln$sleep_day, label = T, abbr = T)
+
 
 #cleaning weight_log 
 weight_log <- weight_log %>%
